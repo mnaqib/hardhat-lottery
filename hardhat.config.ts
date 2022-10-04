@@ -47,7 +47,7 @@ const config: HardhatUserConfig = {
         token: 'ETH',
     },
     mocha: {
-        timeout: 300000, // 200 seconds
+        timeout: 600000, // 600 seconds
     },
 }
 

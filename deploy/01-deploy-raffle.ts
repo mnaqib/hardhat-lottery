@@ -19,11 +19,11 @@ const func: DeployFunction = async ({
     const chainId = network.config.chainId as number
     let vrfCoordinatorAddress: string
     let subscriptionId: string
-    const VRFCoordinatorV2Mock: VRFCoordinatorV2Mock = await ethers.getContract(
-        'VRFCoordinatorV2Mock'
-    )
 
     if (developmetChains.includes(network.name)) {
+        const VRFCoordinatorV2Mock: VRFCoordinatorV2Mock =
+            await ethers.getContract('VRFCoordinatorV2Mock')
+
         vrfCoordinatorAddress = VRFCoordinatorV2Mock.address
         const transactionResponse =
             await VRFCoordinatorV2Mock.createSubscription()
@@ -60,6 +60,9 @@ const func: DeployFunction = async ({
     })
 
     if (developmetChains.includes(network.name)) {
+        const VRFCoordinatorV2Mock: VRFCoordinatorV2Mock =
+            await ethers.getContract('VRFCoordinatorV2Mock')
+
         await VRFCoordinatorV2Mock.addConsumer(subscriptionId, raffle.address)
     }
 

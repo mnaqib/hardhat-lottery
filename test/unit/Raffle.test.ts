@@ -6,7 +6,7 @@ import { BigNumber } from 'ethers'
 
 !developmetChains.includes(network.name)
     ? describe.skip
-    : describe('Raffle', () => {
+    : describe('Raffle Unit Tests', () => {
           let deployer: string
           let raffle: Raffle
           let vrfCoordinatorV2Mock: VRFCoordinatorV2Mock
