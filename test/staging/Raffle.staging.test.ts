@@ -29,7 +29,7 @@ developmetChains.includes(network.name)
                   const accounts = await ethers.getSigners()
                   //   let winnerStartingBalance: BigNumber
 
-                  await new Promise(async (resolve, reject) => {
+                  await new Promise<void>(async (resolve, reject) => {
                       //setting up the listerner
                       raffle.once('WinnerPicked', async () => {
                           console.log('WinnerPicked event fired')
@@ -56,15 +56,16 @@ developmetChains.includes(network.name)
                                       .add(entranceFee)
                                       .toString()
                               )
-                              resolve(() => {
-                                  console.log('winnerPicked')
-                              })
+                              resolve()
                           } catch (error) {
                               reject(error)
                           }
                       })
 
-                      await raffle.enterRaffle({ value: entranceFee })
+                      const tx = await raffle.enterRaffle({
+                          value: entranceFee,
+                      })
+                      await tx.wait(6)
                       const winnerStartingBalance =
                           await accounts[0].getBalance()
                       console.log('Entered contest')
