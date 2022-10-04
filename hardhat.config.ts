@@ -46,6 +46,9 @@ const config: HardhatUserConfig = {
         coinmarketcap: COINMARKETCAP_KEY,
         token: 'ETH',
     },
+    mocha: {
+        timeout: 300000, // 200 seconds
+    },
 }
 
 export default config
